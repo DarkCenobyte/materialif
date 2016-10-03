@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
@@ -28,6 +30,12 @@ $loader = new \Config\Autoloader;
 $loader->register();
 $loader->addNamespace('Config', 'config');
 //$loader->addNamespace('Controllers', '../controllers');
+$loader->addNamespace('Components', 'components');
 $loader->addNamespace('Controllers', 'controllers');
 $loader->addNamespace('Models', 'models');
 $loader->addNamespace('Install', 'install');
+
+/**
+ * Template engine loading (Smarty 3 don't match PSR-4 for autoloading)
+ */
+require_once('vendor/smarty/smarty/libs/Smarty.class.php');
