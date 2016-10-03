@@ -31,6 +31,7 @@ class Renderer
     }
 
     $this->smarty->display('views/' .
+      'default/' . //@TODO: replace by config from db : template name
       strtolower(substr($this->parent, 0, -10)) .
       '/' . $name . '.tpl'
     );
