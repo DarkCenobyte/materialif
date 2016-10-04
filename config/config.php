@@ -24,8 +24,9 @@ date_default_timezone_set('UTC');
 
 /**
  * Namespace Loading
+ * @deprecated now using Composer PSR-4 autoloader
  */
-require_once('autoloader.php');
+/*require_once('autoloader.php');
 $loader = new \Config\Autoloader;
 $loader->register();
 $loader->addNamespace('Config', 'config');
@@ -33,7 +34,7 @@ $loader->addNamespace('Config', 'config');
 $loader->addNamespace('Components', 'components');
 $loader->addNamespace('Controllers', 'controllers');
 $loader->addNamespace('Models', 'models');
-$loader->addNamespace('Install', 'install');
+$loader->addNamespace('Install', 'install');*/
 
 /**
  * Template engine loading (Smarty 3 don't match PSR-4 for autoloading)

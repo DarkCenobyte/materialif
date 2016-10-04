@@ -2,5 +2,14 @@
     "require": {
         "smarty/smarty": "^3.1",
         "illuminate/database": "^5.3"
+    },
+    "autoload": {
+      "psr-4": {
+        "Config\\": "config/",
+        "Components\\": "components/",
+        "Controllers\\": "controllers/",
+        "Models\\": "models/",
+        "Install\\": "install/"
+      }
     }
 }

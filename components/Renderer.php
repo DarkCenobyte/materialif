@@ -9,8 +9,10 @@ class Renderer
 
   public function __construct($parent)
   {
-    $reflection = new \ReflectionClass($parent);
-    $this->parent = $reflection->getShortName();
+    if (isset($parent)) {
+      $reflection = new \ReflectionClass($parent);
+      $this->parent = $reflection->getShortName();
+    }
     $this->smarty = new \Smarty();
 
     $this->smarty->setTemplateDir(__DIR__ . '/../caches/smarty/templates');
@@ -24,11 +26,7 @@ class Renderer
    */
   public function render($name, $params = [])
   {
-    if (isset($params) && is_array($params)) {
-      foreach ($params as $key => $value) {
-        $this->smarty->assign($key, $value);
-      }
-    }
+    $this->assignParameters($params);
 
     $this->smarty->display('views/' .
       'default/' . //@TODO: replace by config from db : template name
@@ -42,12 +40,18 @@ class Renderer
    */
   public function renderFromFile($filepath, $params = [])
   {
+    $this->assignParameters($params);
+
+    $this->smarty->display($filepath);
+  }
+
+  private function assignParameters($params)
+  {
     if (isset($params) && is_array($params)) {
       foreach ($params as $key => $value) {
         $this->smarty->assign($key, $value);
       }
     }
-
-    $this->smarty->display($filepath);
   }
+
 }
