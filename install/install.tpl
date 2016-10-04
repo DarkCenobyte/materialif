@@ -57,9 +57,50 @@
           SOFTWARE.<br />
         </div>
       </div>
-      <div id="step-1-content" class="col s12">Test 2</div>
+      <div id="step-1-content" class="col s12">
+        <form class="col s12" id="step-1-form">
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <input placeholder="localhost" id="server" type="text" class="validate" required>
+              <label for="server">Server (:port)</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <select>
+                <option value="mysql" selected>MySQL</option>
+                <option value="pgsql">PostgreSQL</option>
+                <option value="sqlsvr">SQL Server</option>
+              </select>
+              <label>Database Type</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Database Name" id="db-name" type="text" class="validate" required>
+              <label for="db-name">Database Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Database Username" id="db-user" type="text" class="validate" required>
+              <label for="db-user">Database Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Database User Password" id="db-password" type="password" class="validate">
+              <label for="db-password">Database User Password (optional)</label>
+            </div>
+          </div>
+        </form>
+        <a class="waves-effect waves-light btn-large blue lighten-2" id="test-db"><i class="material-icons left">build</i>Test Configuration</a>
+      </div>
       <div id="step-2-content" class="col s12">Test 3</div>
-      <div id="step-3-content" class="col s12">Test 4</div>
+      <div id="step-3-content" class="col s12">
+        <div id="ready-msg" class="col s8 green lighten-5">
+          The installation is ready to start, just press the button below to start the process:<br />
+        </div>
+        <a class="waves-effect waves-light btn-large blue lighten-2" id="start-install"><i class="material-icons left">build</i>Test Configuration</a>
+      </div>
       <br />
       <a class="waves-effect waves-light btn-large disabled" id="prevStep"><i class="material-icons left">navigate_before</i>previous</a>
       <a class="waves-effect waves-light btn-large" id="nextStep"><i class="material-icons left">navigate_next</i>next</a>
@@ -72,24 +113,36 @@
         var step = 0;
         var lastStep = 3;
 
-        $("#nextStep").click(function(){
-          //checkForm before
-          step++;
-          $('#step-' + step).removeClass('disabled');
-          $('ul.tabs').tabs('select_tab', 'step-' + step + '-content');
-          $("#prevStep").removeClass('disabled');
-          if (step == lastStep) {
-            $("#nextStep").addClass('disabled');
+        // Intitialize select
+        $('select').material_select();
+
+        $('#nextStep').click(function(){
+          //TODO: add custom error msg to checkValidity ?
+          if ((step != 1 && step != 2) || $("#step-" + step + "-form")[0].checkValidity()) {
+            step++;
+            $('#step-' + step).removeClass('disabled');
+            $('ul.tabs').tabs('select_tab', 'step-' + step + '-content');
+            $('#prevStep').removeClass('disabled');
+            if (step == lastStep) {
+              $('#nextStep').addClass('disabled');
+            }
           }
         });
-        $("#prevStep").click(function(){
+
+        $('#prevStep').click(function(){
           step--;
-          $("#nextStep").removeClass('disabled');
+          $('#nextStep').removeClass('disabled');
           $('ul.tabs').tabs('select_tab', 'step-' + step + '-content');
           if (step == 0) {
-            $("#prevStep").addClass('disabled');
+            $('#prevStep').addClass('disabled');
           }
         });
+
+        $('#test-db').click(function(){
+          // Call AJAX to a test script
+
+        });
+
       });
     </script>
   </body>
