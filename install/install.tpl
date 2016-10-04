@@ -5,6 +5,11 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../resources/default/css/materialize.min.css"  media="screen,projection"/>
+    <style>
+      .disabled {
+        pointer-events: none;
+      }
+    </style>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,13 +22,14 @@
       </div>
       <div class="divider"></div>
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#readme">ReadMe</a></li>
-        <li class="tab col s3 disabled"><a href="#database">Database Settings</a></li>
-        <li class="tab col s3 disabled"><a href="#admin">Administrator Settings</a></li>
-        <li class="tab col s3 disabled"><a href="#finish">Finish</a></li>
+        <li class="tab col s3" id="step-0"><a class="active" href="#readme">ReadMe</a></li>
+        <li class="tab col s3 disabled" id="step-1"><a href="#database">Database Settings</a></li>
+        <li class="tab col s3 disabled" id="step-2"><a href="#admin">Administrator Settings</a></li>
+        <li class="tab col s3 disabled" id="step-3"><a href="#finish">Finish</a></li>
       </ul>
+      <br />
       <div id="readme" class="col s12">
-        <div id="disclaimer" class="col s8 indigo lighten-4">
+        <div id="disclaimer" class="col s8 red lighten-5">
           You're just about installing an alpha version of Elysium-Forum,<br />
           This forum is open-source and created by Olivier Seror-Droin, under license MIT,<br />
           If you paid to get this software, you should consider trying to get your money back.<br />
@@ -50,15 +56,38 @@
           OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
           SOFTWARE.<br />
         </div>
+        <br />
+        <a class="waves-effect waves-light btn-large disabled" id="prevStep"><i class="material-icons left">navigate_before</i>previous</a>
+        <a class="waves-effect waves-light btn-large" id="nextStep"><i class="material-icons left">navigate_next</i>next</a>
       </div>
       <div id="database" class="col s12">Test 2</div>
       <div id="admin" class="col s12">Test 3</div>
       <div id="finish" class="col s12">Test 4</div>
-
-
-
     </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../resources/default/js/materialize.min.js"></script>
+    <script>
+      $(function(){
+        var step = 0;
+        var lastStep = 3;
+
+        $("#nextStep").click(function(){
+          //checkForm before
+          step++;
+          $("#prevStep").removeClass('disabled');
+          if (step == lastStep) {
+            $("#nextStep").addClass('disabled');
+          }
+        });
+        $("#prevStep").click(function(){
+          step--;
+          $("#nextStep").removeClass('disabled');
+          if (step == 0) {
+            $("#prevStep").addClass('disabled');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
