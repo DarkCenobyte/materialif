@@ -2,18 +2,10 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;
 
-//Create security (users) levels table
-Capsule::schema()->create('users_levels', function (Blueprint $table) {
+//Create ranks table
+Capsule::schema()->create('ranks', function (Blueprint $table) {
     $table->increments('id');
-    $table->boolean('is_admin')->default(0);
-    $table->integer('level_value')->default(1);
-});
-
-//Create security (categories) levels table
-Capsule::schema()->create('categories_levels', function (Blueprint $table) {
-    $table->increments('id');
-    $table->boolean('is_locked')->default(0);
-    $table->integer('level_value')->default(1);
+    $table->string('name');
 });
 
 //Create categories table
@@ -21,16 +13,19 @@ Capsule::schema()->create('categories', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
     $table->text('description')->nullable();
-    $table->integer('level_id')->default(2);
-    $table->foreign('level_id')->references('id')->on('categories_levels');
 });
 
-//Create ranks table
-Capsule::schema()->create('ranks', function (Blueprint $table) {
+//Create rights levels table
+Capsule::schema()->create('rights_levels', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('name');
-    $table->integer('level_id')->default(2);
-    $table->foreign('level_id')->references('id')->on('users_levels');
+    $table->boolean('can_read');
+    $table->boolean('can_write');
+    $table->boolean('can_moderate');
+    $table->boolean('is_admin')->default(0);
+    $table->integer('rank_id');
+    $table->foreign('rank_id')->references('id')->on('ranks');
+    $table->integer('apply_on_cat_id');
+    $table->foreign('apply_on_cat_id')->references('id')->on('categories');
 });
 
 //Create users table
@@ -39,10 +34,19 @@ Capsule::schema()->create('users', function (Blueprint $table) {
     $table->string('username');
     $table->string('email');
     $table->string('password');
-    $table->integer('rank_id')->unsigned();
+    $table->integer('rank_id');
+    $table->foreign('rank_id')->references('id')->on('ranks');
     $table->string('first_name')->nullable();
     $table->string('last_name')->nullable();
     $table->date('birthdate')->nullable();
     $table->timestamps();
-    $table->foreign('rank_id')->references('id')->on('ranks');
+});
+
+//Create topics table
+Capsule::schema()->create('threads', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('title');
+    $table->integer('author_id');
+    $table->foreign('author_id')->references('id')->on('users');
+    $table->timestamps();
 });
