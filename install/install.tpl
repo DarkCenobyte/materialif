@@ -94,12 +94,38 @@
         </form>
         <a class="waves-effect waves-light btn-large blue lighten-2" id="test-db"><i class="material-icons left">build</i>Test Configuration</a>
       </div>
-      <div id="step-2-content" class="col s12">Test 3</div>
+      <div id="step-2-content" class="col s12">
+        <form class="col s12" id="step-2-form">
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <input id="admin-username" type="text" class="validate" required>
+              <label for="admin-username">Administrator Username</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <input id="admin-email" type="email" class="validate" required>
+              <label for="admin-email">Administrator E-mail</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m6">
+              <input id="pwd" type="password" class="validate" required>
+              <label for="pwd">Password</label>
+            </div>
+            <div class="input-field col s12 m6">
+              <input id="retype-pwd" type="password" class="validate" required>
+              <label for="retype-pwd">Re-type Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
       <div id="step-3-content" class="col s12">
         <div id="ready-msg" class="col s8 green lighten-5">
           The installation is ready to start, just press the button below to start the process:<br />
         </div>
-        <a class="waves-effect waves-light btn-large blue lighten-2" id="start-install"><i class="material-icons left">build</i>Test Configuration</a>
+        <br />
+        <div class="row center-align">
+          <a class="waves-effect waves-light btn-large green lighten-2 center-align" id="start-install"><i class="material-icons left">save</i>Start Installation</a>
+        </div>
       </div>
       <br />
       <a class="waves-effect waves-light btn-large disabled" id="prevStep"><i class="material-icons left">navigate_before</i>previous</a>
@@ -141,6 +167,11 @@
         $('#test-db').click(function(){
           // Call AJAX to a test script
 
+        });
+
+        $('#start-install').click(function(){
+          // Call AJAX to start the installation process
+          
         });
 
       });
