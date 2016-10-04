@@ -1,1 +1,0 @@
-Move everything here inside the corresponding template.
