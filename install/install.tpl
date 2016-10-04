@@ -22,13 +22,13 @@
       </div>
       <div class="divider"></div>
       <ul class="tabs">
-        <li class="tab col s3" id="step-0"><a class="active" href="#readme">ReadMe</a></li>
-        <li class="tab col s3 disabled" id="step-1"><a href="#database">Database Settings</a></li>
-        <li class="tab col s3 disabled" id="step-2"><a href="#admin">Administrator Settings</a></li>
-        <li class="tab col s3 disabled" id="step-3"><a href="#finish">Finish</a></li>
+        <li class="tab col s3" id="step-0"><a class="active" href="#step-0-content">ReadMe</a></li>
+        <li class="tab col s3 disabled" id="step-1"><a href="#step-1-content">Database Settings</a></li>
+        <li class="tab col s3 disabled" id="step-2"><a href="#step-2-content">Administrator Settings</a></li>
+        <li class="tab col s3 disabled" id="step-3"><a href="#step-3-content">Finish</a></li>
       </ul>
       <br />
-      <div id="readme" class="col s12">
+      <div id="step-0-content" class="col s12">
         <div id="disclaimer" class="col s8 red lighten-5">
           You're just about installing an alpha version of Elysium-Forum,<br />
           This forum is open-source and created by Olivier Seror-Droin, under license MIT,<br />
@@ -56,13 +56,13 @@
           OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
           SOFTWARE.<br />
         </div>
-        <br />
-        <a class="waves-effect waves-light btn-large disabled" id="prevStep"><i class="material-icons left">navigate_before</i>previous</a>
-        <a class="waves-effect waves-light btn-large" id="nextStep"><i class="material-icons left">navigate_next</i>next</a>
       </div>
-      <div id="database" class="col s12">Test 2</div>
-      <div id="admin" class="col s12">Test 3</div>
-      <div id="finish" class="col s12">Test 4</div>
+      <div id="step-1-content" class="col s12">Test 2</div>
+      <div id="step-2-content" class="col s12">Test 3</div>
+      <div id="step-3-content" class="col s12">Test 4</div>
+      <br />
+      <a class="waves-effect waves-light btn-large disabled" id="prevStep"><i class="material-icons left">navigate_before</i>previous</a>
+      <a class="waves-effect waves-light btn-large" id="nextStep"><i class="material-icons left">navigate_next</i>next</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -75,6 +75,8 @@
         $("#nextStep").click(function(){
           //checkForm before
           step++;
+          $('#step-' + step).removeClass('disabled');
+          $('ul.tabs').tabs('select_tab', 'step-' + step + '-content');
           $("#prevStep").removeClass('disabled');
           if (step == lastStep) {
             $("#nextStep").addClass('disabled');
@@ -83,6 +85,7 @@
         $("#prevStep").click(function(){
           step--;
           $("#nextStep").removeClass('disabled');
+          $('ul.tabs').tabs('select_tab', 'step-' + step + '-content');
           if (step == 0) {
             $("#prevStep").addClass('disabled');
           }
