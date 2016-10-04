@@ -2,6 +2,23 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;
 
+//Create config table
+Capsule::schema()->create('config', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('param');
+    $table->enum('param_type', array('string', 'integer'));
+    $table->string('param_string')->nullable();
+    $table->integer('param_integer')->nullable();
+});
+
+//Create extensions table
+Capsule::schema()->create('extensions', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('name');
+    $table->string('author_name');
+    $table->boolean('is_enabled')->default(0);
+});
+
 //Create ranks table
 Capsule::schema()->create('ranks', function (Blueprint $table) {
     $table->increments('id');
@@ -42,11 +59,24 @@ Capsule::schema()->create('users', function (Blueprint $table) {
     $table->timestamps();
 });
 
-//Create topics table
+//Create threads table
 Capsule::schema()->create('threads', function (Blueprint $table) {
     $table->increments('id');
     $table->string('title');
     $table->integer('author_id');
     $table->foreign('author_id')->references('id')->on('users');
+    $table->integer('category_id');
+    $table->foreign('category_id')->references('id')->on('categories');
+    $table->timestamps();
+});
+
+//Create posts table
+Capsule::schema()->create('posts', function (Blueprint $table) {
+    $table->increments('id');
+    $table->text('content');
+    $table->integer('author_id');
+    $table->foreign('author_id')->references('id')->on('users');
+    $table->integer('thread_id');
+    $table->foreign('thread_id')->references('id')->on('threads');
     $table->timestamps();
 });
