@@ -38,5 +38,6 @@ $loader->addNamespace('Install', 'install');*/
 
 /**
  * Template engine loading (Smarty 3 don't match PSR-4 for autoloading)
+ * @deprecated seems useless to be require here, composer seems to do the job
  */
-require_once('vendor/smarty/smarty/libs/Smarty.class.php');
+//require_once('vendor/smarty/smarty/libs/Smarty.class.php');
