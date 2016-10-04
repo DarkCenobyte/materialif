@@ -36,4 +36,18 @@ class Renderer
       '/' . $name . '.tpl'
     );
   }
+
+  /**
+   * Render a view from a specified filepath
+   */
+  public function renderFromFile($filepath, $params = [])
+  {
+    if (isset($params) && is_array($params)) {
+      foreach ($params as $key => $value) {
+        $this->smarty->assign($key, $value);
+      }
+    }
+
+    $this->smarty->display($filepath);
+  }
 }
