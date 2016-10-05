@@ -172,23 +172,31 @@
 
         $('#test-db').click(function(){
           // Call AJAX to a test script
-          var dbForm = new FormData($('#step-1-form')[0]);
+          var dbForm = {};
+          $('#step-1-form').find(':input').each(function(){
+            dbForm[this.name] = this.value;
+          });
 
           $.ajax({
             url: "test.php",
             type: "POST",
             data: {
               "dbForm": dbForm
-            },
-            processData: false,
-            contentType: false
+            }
           });
         });
 
         $('#start-install').click(function(){
           // Call AJAX to start the installation process
-          var dbForm = new FormData($('#step-1-form')[0]);
-          var adminForm = new FormData($('#step-2-form')[0]);
+          var dbForm = {};
+          var adminForm = {};
+
+          $('#step-1-form').find(':input').each(function(){
+            dbForm[this.name] = this.value;
+          });
+          $('#step-2-form').find(':input').each(function(){
+            adminForm[this.name] = this.value;
+          });
 
           $.ajax({
             url: "",
@@ -196,9 +204,7 @@
             data: {
               "dbForm": dbForm,
               "adminForm": adminForm
-            },
-            processData: false,
-            contentType: false
+            }
           });
         });
 

@@ -12,7 +12,9 @@ if (isset($_POST['dbForm'])) {
   define("PASSWORD", $dbForm['db-password']);
   define("PREFIX", $dbForm['db-prefix']);
 
-  return echo 0;
+  echo 0;
+  return;
 }
 
-return echo 1;
+echo 1;
+return;
