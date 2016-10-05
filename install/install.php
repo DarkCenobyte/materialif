@@ -42,7 +42,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $admin = new Users();
   $admin->username = $adminForm['admin-username'];
   $admin->email = $adminForm['admin-email'];
-  $admin->password = $adminForm['admin-pwd'];
+  $admin->password = password_hash($adminForm['admin-pwd'], PASSWORD_DEFAULT);
   $admin->rank_id = 1;
   $admin->save();
 
