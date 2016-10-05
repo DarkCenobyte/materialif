@@ -39,6 +39,8 @@ if (isset($_POST['dbForm'])) {
 
     return;
   }
+  $manager = $capsule->getDatabaseManager();
+  $manager->purge();
 
   $res['status'] = true;
   $res['error'] = null;
