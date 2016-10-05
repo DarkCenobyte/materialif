@@ -9,10 +9,7 @@ class AuthController extends BaseController
 {
   public function index()
   {
-    $this->renderer->render("index", [
-      "stat_posts" => 1,
-      "stat_users" => 1
-    ]);
+    $this->renderer->render("index");
   }
 
   public function auth($username, $password)

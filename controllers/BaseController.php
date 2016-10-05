@@ -10,14 +10,24 @@ use Components\Renderer;
 class BaseController
 {
   protected $renderer;
+  protected $params;
 
-  function __construct()
+  function __construct($target = "index", $params = [])
   {
     $this->renderer = new Renderer(get_class($this));
-    $this->index();
+    if (
+      in_array(
+        $target,
+        get_class_methods($this)
+      )
+    ) {
+      $this->$target();
+    } else {
+      $this->errorNotFound();
+    }
   }
 
-  public function index()
+  public function errorNotFound()
   {
     echo "404";
   }
