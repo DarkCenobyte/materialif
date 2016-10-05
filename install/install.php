@@ -4,9 +4,9 @@ require_once("../vendor/autoload.php");
 use Components\Renderer;
 use Models\Users;
 
-if (isset($_POST['forms'])) {
-  $dbForm = $_POST['forms']['dbForm'];
-  $adminForm = $_POST['forms']['adminForm'];
+if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
+  $dbForm = $_POST['dbForm'];
+  $adminForm = $_POST['adminForm'];
 
   $configFile = file_get_contents("config.sample.php");
 
@@ -39,7 +39,7 @@ if (isset($_POST['forms'])) {
   $admin = new Users();
   $admin->username = $adminForm['admin-username'];
   $admin->email = $adminForm['admin-email'];
-  $admin->password = $adminForm['admin-password'];
+  $admin->password = $adminForm['admin-pwd'];
   $admin->rank_id = 1;
   $admin->save();
 

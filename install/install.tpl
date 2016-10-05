@@ -61,11 +61,11 @@
         <form class="col s12" id="step-1-form">
           <div class="row">
             <div class="input-field col s12 m6">
-              <input placeholder="localhost" id="server" type="text" class="validate" required>
+              <input placeholder="localhost" id="server" name="server" type="text" class="validate" required>
               <label for="server">Server (:port)</label>
             </div>
             <div class="input-field col s12 m6">
-              <select id="driver">
+              <select id="driver" name="driver">
                 <option value="mysql" selected>MySQL</option>
                 <option value="pgsql">PostgreSQL</option>
                 <option value="sqlsvr">SQL Server</option>
@@ -75,25 +75,25 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Database Name" id="db-name" type="text" class="validate" required>
+              <input placeholder="Database Name" id="db-name" name="db-name" type="text" class="validate" required>
               <label for="db-name">Database Name</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Database Username" id="db-user" type="text" class="validate" required>
+              <input placeholder="Database Username" id="db-user" name="db-user" type="text" class="validate" required>
               <label for="db-user">Database Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Database User Password" id="db-password" type="password" class="validate">
+              <input placeholder="Database User Password" id="db-password" name="db-password" type="password" class="validate">
               <label for="db-password">Database User Password (optional)</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Prefix" id="db-prefix" type="text" class="validate">
+              <input placeholder="Prefix" id="db-prefix" name="db-prefix" type="text" class="validate">
               <label for="db-prefix">Prefix (optional)</label>
             </div>
           </div>
@@ -104,21 +104,21 @@
         <form class="col s12" id="step-2-form">
           <div class="row">
             <div class="input-field col s12 m6">
-              <input id="admin-username" type="text" class="validate" required>
+              <input id="admin-username" name="admin-username" type="text" class="validate" required>
               <label for="admin-username">Administrator Username</label>
             </div>
             <div class="input-field col s12 m6">
-              <input id="admin-email" type="email" class="validate" required>
+              <input id="admin-email" name="admin-email" type="email" class="validate" required>
               <label for="admin-email">Administrator E-mail</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12 m6">
-              <input id="pwd" type="password" class="validate" required>
-              <label for="pwd">Password</label>
+              <input id="admin-pwd" name="admin-pwd" type="password" class="validate" required>
+              <label for="admin-pwd">Password</label>
             </div>
             <div class="input-field col s12 m6">
-              <input id="retype-pwd" type="password" class="validate" required>
+              <input id="retype-pwd" name="retype-pwd" type="password" class="validate" required>
               <label for="retype-pwd">Re-type Password</label>
             </div>
           </div>
@@ -172,12 +172,34 @@
 
         $('#test-db').click(function(){
           // Call AJAX to a test script
+          var dbForm = new FormData($('#step-1-form')[0]);
 
+          $.ajax({
+            url: "test.php",
+            type: "POST",
+            data: {
+              "dbForm": dbForm
+            },
+            processData: false,
+            contentType: false
+          });
         });
 
         $('#start-install').click(function(){
           // Call AJAX to start the installation process
+          var dbForm = new FormData($('#step-1-form')[0]);
+          var adminForm = new FormData($('#step-2-form')[0]);
 
+          $.ajax({
+            url: "",
+            type: "POST",
+            data: {
+              "dbForm": dbForm,
+              "adminForm": adminForm
+            },
+            processData: false,
+            contentType: false
+          });
         });
 
       });
