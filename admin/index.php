@@ -6,5 +6,8 @@ require_once "../config/config.php";
 $class = "Controllers\Admin\\" . (isset($_GET['c']) ? ucfirst($_GET['c']) . 'Controller' : 'IndexController');
 $target = $_GET['t'] ?? "index";
 $params = $_GET['p'] ?? null;
-
-new $class($target, $params);
+if (class_exists($class, true)) {
+  new $class($target, $params);
+} else {
+  new Controllers\Admin\BaseController(null, null);
+}

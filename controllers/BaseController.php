@@ -21,6 +21,7 @@ class BaseController
         get_class_methods($this)
       )
     ) {
+      $this->params = $params;
       $this->$target();
     } else {
       $this->errorNotFound();
