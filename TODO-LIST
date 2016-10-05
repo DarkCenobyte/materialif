@@ -1,0 +1,7 @@
+Todo:
+
+-Add avatar related value in database.
+-Make the admin pages to manage categories, users, rights, ...
+-Make the forum modulable with extensions, first extension for testing this implementation should be a backup system.
+-Make the forum usages workflows (posting, reading, ...).
+-Implement the migration system from Eloquent/Laravel to easy patch in the future.
