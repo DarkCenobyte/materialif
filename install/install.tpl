@@ -93,7 +93,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Prefix" id="db-prefix" name="db-prefix" type="text" class="validate">
+              <input placeholder="ely_" id="db-prefix" name="db-prefix" type="text" class="validate">
               <label for="db-prefix">Prefix (optional)</label>
             </div>
           </div>
