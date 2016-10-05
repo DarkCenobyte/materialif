@@ -9,10 +9,9 @@ class IndexController extends BaseController
 {
   public function index()
   {
-    //echo "Hello, World...";
     $this->renderer->render("index", [
-      "customName" => "DarkCenobyte",
-      "customRank" => "Master"
+      "stat_posts" => 1,
+      "stat_users" => 1
     ]);
   }
 }

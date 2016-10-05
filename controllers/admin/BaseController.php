@@ -13,6 +13,7 @@ class BaseController
 
   function __construct()
   {
+    //check session if admin, if not redirect to adminLogin page
     $this->renderer = new Renderer(get_class($this), true);
     $this->index();
   }
