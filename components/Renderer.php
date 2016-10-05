@@ -6,12 +6,14 @@ class Renderer
 {
   private $smarty;
   private $parent;
+  private $isAdmin;
 
-  public function __construct($parent)
+  public function __construct($parent, $isAdmin = false)
   {
     if (isset($parent)) {
       $reflection = new \ReflectionClass($parent);
       $this->parent = $reflection->getShortName();
+      $this->isAdmin = $isAdmin;
     }
     $this->smarty = new \Smarty();
 
@@ -30,6 +32,7 @@ class Renderer
 
     $this->smarty->display('views/' .
       'default/' . //@TODO: replace by config from db : template name
+      ($this->isAdmin ? 'admin/' : '') .
       strtolower(substr($this->parent, 0, -10)) .
       '/' . $name . '.tpl'
     );
