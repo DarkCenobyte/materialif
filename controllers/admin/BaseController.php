@@ -3,7 +3,7 @@
 /**
  *  Please, don't edit this file
  */
-namespace Admin\Controllers;
+namespace Controllers\Admin;
 
 use Components\Renderer;
 

@@ -30,7 +30,9 @@ class Renderer
   {
     $this->assignParameters($params);
 
-    $this->smarty->display('views/' .
+    $this->smarty->display(
+      ($this->isAdmin ? '../' : '') .
+      'views/' .
       'default/' . //@TODO: replace by config from db : template name
       ($this->isAdmin ? 'admin/' : '') .
       strtolower(substr($this->parent, 0, -10)) .
