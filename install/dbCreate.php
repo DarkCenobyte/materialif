@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 //Create config table
 Capsule::schema()->create('config', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('param');
+    $table->string('param')->unique();
     $table->enum('param_type', array('string', 'integer'));
     $table->string('param_string')->nullable();
     $table->integer('param_integer')->nullable();
@@ -22,7 +22,7 @@ Capsule::schema()->create('extensions', function (Blueprint $table) {
 //Create ranks table
 Capsule::schema()->create('ranks', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('name');
+    $table->string('name')->unique();
 });
 
 //Create categories table
@@ -48,8 +48,8 @@ Capsule::schema()->create('rights_levels', function (Blueprint $table) {
 //Create users table
 Capsule::schema()->create('users', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('username');
-    $table->string('email');
+    $table->string('username')->unique();
+    $table->string('email')->unique();
     $table->string('password');
     $table->integer('rank_id');
     $table->foreign('rank_id')->references('id')->on('ranks');
