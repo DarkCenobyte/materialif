@@ -3,9 +3,9 @@
 namespace Controllers\Admin;
 
 /**
- * Admin index page, should be used to display some statistics about the forum
+ * Admin Authentication page
  */
-class IndexController extends BaseController
+class AuthController extends BaseController
 {
   public function index()
   {
@@ -13,5 +13,10 @@ class IndexController extends BaseController
       "stat_posts" => 1,
       "stat_users" => 1
     ]);
+  }
+
+  public function auth($username, $password)
+  {
+
   }
 }
