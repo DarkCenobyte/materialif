@@ -5,8 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 //Create config table
 Capsule::schema()->create('config', function (Blueprint $table) {
     $table->increments('id');
-    $table->string('param')->unique();
-    $table->enum('param_type', array('string', 'integer'));
+    $table->string('param_name')->unique();
+    $table->enum('param_type', array('string', 'integer'))->default('string');
     $table->string('param_string')->nullable();
     $table->integer('param_integer')->nullable();
 });

@@ -10,12 +10,12 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
 
   $configFile = file_get_contents("config.sample.php");
 
-  str_replace("<*DRIVER*>", $dbForm['driver'], $configFile);
-  str_replace("<*HOST*>", $dbForm['server'], $configFile);
-  str_replace("<*DATABASE*>", $dbForm['db-name'], $configFile);
-  str_replace("<*USERNAME*>", $dbForm['db-user'], $configFile);
-  str_replace("<*PASSWORD*>", $dbForm['db-password'], $configFile);
-  str_replace("<*PREFIX*>", $dbForm['db-prefix'], $configFile);
+  $configFile = str_replace("<*DRIVER*>", '"' . $dbForm['driver'] . '"', $configFile);
+  $configFile = str_replace("<*HOST*>", '"' . $dbForm['server'] . '"', $configFile);
+  $configFile = str_replace("<*DATABASE*>", '"' . $dbForm['db-name'] . '"', $configFile);
+  $configFile = str_replace("<*USERNAME*>", '"' . $dbForm['db-user'] . '"', $configFile);
+  $configFile = str_replace("<*PASSWORD*>", '"' . $dbForm['db-password'] . '"', $configFile);
+  $configFile = str_replace("<*PREFIX*>", '"' . $dbForm['db-prefix'] . '"', $configFile);
 
   file_put_contents("../config/config.php", $configFile, LOCK_EX);
   require("../config/config.php");
