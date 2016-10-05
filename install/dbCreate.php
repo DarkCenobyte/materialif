@@ -41,7 +41,7 @@ Capsule::schema()->create('rights_levels', function (Blueprint $table) {
     $table->boolean('is_admin')->default(0);
     $table->integer('rank_id');
     $table->foreign('rank_id')->references('id')->on('ranks');
-    $table->integer('apply_on_cat_id');
+    $table->integer('apply_on_cat_id')->nullable();
     $table->foreign('apply_on_cat_id')->references('id')->on('categories');
 });
 

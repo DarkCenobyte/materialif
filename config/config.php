@@ -1,43 +1,8 @@
 <?php
 
-session_start();
-
-use Illuminate\Database\Capsule\Manager as Capsule;
-
 /**
- * Database configuration
+ * The script isn't actually installed, so this will redirect you to the install
+ * script. This file will be override after installation.
  */
-$capsule = new Capsule;
-$capsule->addConnection([
-  'driver'    => 'mysql',
-  'host'      => 'localhost',
-  'database'  => 'elyseum',
-  'username'  => 'root',
-  'password'  => '',
-  'charset'   => 'utf8mb4',
-  'collation' => 'utf8mb4_general_ci',
-  'prefix'    => 'ely_'
-]);
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
-date_default_timezone_set('UTC');
 
-/**
- * Namespace Loading
- * @deprecated now using Composer PSR-4 autoloader
- */
-/*require_once('autoloader.php');
-$loader = new \Config\Autoloader;
-$loader->register();
-$loader->addNamespace('Config', 'config');
-//$loader->addNamespace('Controllers', '../controllers');
-$loader->addNamespace('Components', 'components');
-$loader->addNamespace('Controllers', 'controllers');
-$loader->addNamespace('Models', 'models');
-$loader->addNamespace('Install', 'install');*/
-
-/**
- * Template engine loading (Smarty 3 don't match PSR-4 for autoloading)
- * @deprecated seems useless to be require here, composer seems to do the job
- */
-//require_once('vendor/smarty/smarty/libs/Smarty.class.php');
+header('Location: install/install.php');

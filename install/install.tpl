@@ -65,7 +65,7 @@
               <label for="server">Server (:port)</label>
             </div>
             <div class="input-field col s12 m6">
-              <select>
+              <select id="driver">
                 <option value="mysql" selected>MySQL</option>
                 <option value="pgsql">PostgreSQL</option>
                 <option value="sqlsvr">SQL Server</option>
@@ -89,6 +89,12 @@
             <div class="input-field col s12">
               <input placeholder="Database User Password" id="db-password" type="password" class="validate">
               <label for="db-password">Database User Password (optional)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Prefix" id="db-prefix" type="text" class="validate">
+              <label for="db-prefix">Prefix (optional)</label>
             </div>
           </div>
         </form>
@@ -171,7 +177,7 @@
 
         $('#start-install').click(function(){
           // Call AJAX to start the installation process
-          
+
         });
 
       });
