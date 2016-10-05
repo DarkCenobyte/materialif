@@ -1,8 +1,11 @@
 <?php
 
 require_once("../vendor/autoload.php");
+
 use Components\Renderer;
 use Models\Users;
+use Models\Ranks;
+use Models\RightsLevels;
 
 if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $dbForm = $_POST['dbForm'];
