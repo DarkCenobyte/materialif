@@ -8,7 +8,7 @@ if (isset($_POST['forms'])) {
   $dbForm = $_POST['forms']['dbForm'];
   $adminForm = $_POST['forms']['adminForm'];
 
-  $configFile = file_get_contents("config.sample.php")
+  $configFile = file_get_contents("config.sample.php");
 
   str_replace("<*DRIVER*>", $dbForm['driver'], $configFile);
   str_replace("<*HOST*>", $dbForm['server'], $configFile);
