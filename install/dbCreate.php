@@ -59,6 +59,7 @@ Capsule::schema()->create('users', function (Blueprint $table) {
     $table->string('password');
     $table->integer('rank_id')->unsigned();
     $table->foreign('rank_id')->references('id')->on('ranks');
+    $table->string('avatar')->nullable();
     $table->string('first_name')->nullable();
     $table->string('last_name')->nullable();
     $table->date('birthdate')->nullable();
