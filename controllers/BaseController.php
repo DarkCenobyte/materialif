@@ -29,7 +29,7 @@ class BaseController
 
   public function errorNotFound()
   {
-    echo "404";
+    $this->renderer->renderFromFile("views/default/404.tpl");
   }
 
 }
