@@ -36,6 +36,13 @@ Capsule::schema()->create('categories', function (Blueprint $table) {
     $table->text('description')->nullable();
 });
 
+//Create threads status table
+Capsule::schema()->create('threads_status', function (Blueprint $table) {
+    $table->engine = 'InnoDB';
+    $table->increments('id');
+    $table->string('status');
+});
+
 //Create rights levels table
 Capsule::schema()->create('rights_levels', function (Blueprint $table) {
     $table->engine = 'InnoDB';
@@ -75,6 +82,8 @@ Capsule::schema()->create('threads', function (Blueprint $table) {
     $table->foreign('author_id')->references('id')->on('users');
     $table->integer('category_id')->unsigned();
     $table->foreign('category_id')->references('id')->on('categories');
+    $table->integer('status_id')->unsigned()->default(1);
+    $table->foreign('status_id')->references('id')->on('threads_status');
     $table->timestamps();
 });
 
