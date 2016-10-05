@@ -2,6 +2,10 @@
 
 require_once("../vendor/autoload.php");
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$res = [];
+
 if (isset($_POST['dbForm'])) {
   $dbForm = $_POST['dbForm'];
 
@@ -12,9 +16,39 @@ if (isset($_POST['dbForm'])) {
   define("PASSWORD", $dbForm['db-password']);
   define("PREFIX", $dbForm['db-prefix']);
 
-  echo 0;
+  $capsule = new Capsule;
+  $capsule->addConnection([
+    'driver'    => DRIVER,
+    'host'      => HOST,
+    'database'  => DATABASE,
+    'username'  => USERNAME,
+    'password'  => PASSWORD,
+    'charset'   => 'utf8mb4',
+    'collation' => 'utf8mb4_general_ci',
+    'prefix'    => PREFIX
+  ]);
+
+  $capsule->setAsGlobal();
+
+  try {
+    Capsule::connection()->getPdo();
+  } catch (PDOException $e) {
+    $res['status'] = false;
+    $res['error'] = $e->getMessage();
+    echo json_encode($res);
+
+    return;
+  }
+
+  $res['status'] = true;
+  $res['error'] = null;
+  echo json_encode($res);
+
   return;
 }
 
-echo 1;
+$res['status'] = false;
+$res['error'] = "Incorrect query";
+echo json_encode($res);
+
 return;
