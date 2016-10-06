@@ -10,13 +10,24 @@ use Components\Redirect;
 
 class BaseController
 {
+  //The controllers in the safe_zone don't require the admin auth (like login)
+  const SAFE_ZONE = [
+    "Controllers\Admin\AuthController"
+  ];
+
   protected $renderer;
+  protected $redirect;
   protected $params;
 
   function __construct($target = "index", $params = [])
   {
-    if (!isset($_SESSION['logged']) || !isset($_SESSION['isAdmin'])) {
-      Redirect::to("auth");
+    $this->redirect = new Redirect("Controllers\Admin\\");
+    if (
+      (!isset($_SESSION['logged']) || !isset($_SESSION['isAdmin'])) &&
+      !in_array(get_class($this), self::SAFE_ZONE)
+    ) {
+      $this->redirect->to("auth");
+      
       return;
     }
     $this->renderer = new Renderer(get_class($this), true);

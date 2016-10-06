@@ -11,11 +11,13 @@ use Components\Redirect;
 class BaseController
 {
   protected $renderer;
+  protected $redirect;
   protected $params;
 
   function __construct($target = "index", $params = [])
   {
     $this->renderer = new Renderer(get_class($this));
+    $this->redirect = new Redirect("Controllers\\");
     if (
       in_array(
         $target,

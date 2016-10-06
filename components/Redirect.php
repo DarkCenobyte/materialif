@@ -4,9 +4,16 @@ namespace Components;
 
 class Redirect
 {
-  public static function to($name)
+  private $parentNamespace;
+
+  function __construct($parentNamespace)
   {
-    $controllerName = ucfirst($name) . "Controller";
+    $this->parentNamespace = $parentNamespace;
+  }
+
+  public function to($name)
+  {
+    $controllerName = $this->parentNamespace . ucfirst($name) . "Controller";
     return new $controllerName();
   }
 }
