@@ -11,3 +11,5 @@ RewriteRule ^(.*)/(.*)$ index.php?c=$1&t=$2 [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?c=$1 [QSA,L]
+
+Options All -Indexes
