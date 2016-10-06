@@ -21,4 +21,8 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+
+if (!defined("BASE_URL")) {
+  define("BASE_URL", <*BASEURL*>);
+}
 date_default_timezone_set('UTC');

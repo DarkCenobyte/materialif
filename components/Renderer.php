@@ -7,9 +7,14 @@ class Renderer
   private $smarty;
   private $parent;
   private $isAdmin;
+  private $defaultParams;
 
   public function __construct($parent, $isAdmin = false)
   {
+    $this->defaultParams = [
+      'basedir' => defined("BASE_URL") ? BASE_URL : ""
+    ];
+
     if (isset($parent)) {
       $reflection = new \ReflectionClass($parent);
       $this->parent = $reflection->getShortName();
@@ -52,6 +57,9 @@ class Renderer
 
   private function assignParameters($params)
   {
+    foreach ($this->defaultParams as $key => $value) {
+      $this->smarty->assign($key, $value);
+    }
     if (isset($params) && is_array($params)) {
       foreach ($params as $key => $value) {
         $this->smarty->assign($key, $value);

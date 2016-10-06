@@ -8,7 +8,7 @@ class Thread extends BaseModel
 
   public function author()
   {
-    return $this->hasOne('Models\Author')
+    return $this->hasOne('Models\Author');
   }
 
   public function category()

@@ -3,17 +3,18 @@
 require_once("../vendor/autoload.php");
 
 use Components\Renderer;
-use Models\Users;
-use Models\Ranks;
-use Models\RightsLevels;
+use Models\User;
+use Models\Rank;
+use Models\RightsLevel;
 use Models\ThreadsStatus;
-use Models\Categories;
-use Models\Threads;
-use Models\Posts;
+use Models\Category;
+use Models\Thread;
+use Models\Post;
 
 if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $dbForm = $_POST['dbForm'];
   $adminForm = $_POST['adminForm'];
+  $baseUrl = str_replace("/install/install.php", "", $_SERVER['PHP_SELF']);
 
   $configFile = file_get_contents("config.sample.php");
 
@@ -23,6 +24,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $configFile = str_replace("<*USERNAME*>", '"' . $dbForm['db-user'] . '"', $configFile);
   $configFile = str_replace("<*PASSWORD*>", '"' . $dbForm['db-password'] . '"', $configFile);
   $configFile = str_replace("<*PREFIX*>", '"' . $dbForm['db-prefix'] . '"', $configFile);
+  $configFile = str_replace("<*BASEURL*>", '"' . $baseUrl . '"', $configFile);
 
   file_put_contents("../config/config.php", $configFile, LOCK_EX);
   require("../config/config.php");
@@ -35,13 +37,13 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   //Ranks creation
   $ranksArray = ["Administrator", "Moderator", "Registered", "Visitor"];
   foreach ($ranksArray as $value) {
-    $rank = new Ranks();
+    $rank = new Rank();
     $rank->name = $value;
     $rank->save();
   }
 
   //Administrator Default Rights
-  $rights = new RightsLevels();
+  $rights = new RightsLevel();
   $rights->can_read = true;
   $rights->can_write = true;
   $rights->can_moderate = true;
@@ -50,7 +52,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $rights->save();
 
   //Moderator Default Rights
-  $rights = new RightsLevels();
+  $rights = new RightsLevel();
   $rights->can_read = true;
   $rights->can_write = true;
   $rights->can_moderate = true;
@@ -59,7 +61,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $rights->save();
 
   //Registered Default Rights
-  $rights = new RightsLevels();
+  $rights = new RightsLevel();
   $rights->can_read = true;
   $rights->can_write = true;
   $rights->can_moderate = false;
@@ -68,7 +70,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $rights->save();
 
   //Visitor Default Rights
-  $rights = new RightsLevels();
+  $rights = new RightsLevel();
   $rights->can_read = true;
   $rights->can_write = false;
   $rights->can_moderate = false;
@@ -77,7 +79,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $rights->save();
 
   //Admin creation
-  $admin = new Users();
+  $admin = new User();
   $admin->username = $adminForm['admin-username'];
   $admin->email = $adminForm['admin-email'];
   $admin->password = password_hash($adminForm['admin-pwd'], PASSWORD_DEFAULT);
@@ -93,18 +95,18 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   }
 
   //Sample content
-  $category = new Categories();
+  $category = new Category();
   $category->name = "Example Category";
   $category->description = "This is an example of category";
   $category->save();
 
-  $thread = new Threads();
+  $thread = new Thread();
   $thread->title = "Welcome on your new forum";
   $thread->author_id = 1;
   $thread->category_id = 1;
   $thread->save();
 
-  $post = new Posts();
+  $post = new Post();
   $post->content = "Hello World!";
   $post->author_id = 1;
   $post->thread_id = 1;

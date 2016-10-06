@@ -1,6 +1,7 @@
 <!DOCTYPE html5>
 <html>
   <head>
+    <base href="{$basedir}/">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
