@@ -1,6 +1,8 @@
 <?php
 
 namespace Controllers\Admin;
+use Models\User;
+use Models\Rank;
 
 /**
  * Admin Authentication page
