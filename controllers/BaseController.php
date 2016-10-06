@@ -6,6 +6,7 @@
 namespace Controllers;
 
 use Components\Renderer;
+use Components\Redirect;
 
 class BaseController
 {

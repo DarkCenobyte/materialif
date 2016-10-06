@@ -31,6 +31,8 @@ class AuthController extends BaseController
   {
     $_SESSION['userid'] = $id;
     $_SESSION['username'] = $username;
+    Redirect::to("index");
+    return;
   }
 
 }

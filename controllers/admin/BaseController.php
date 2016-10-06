@@ -6,6 +6,7 @@
 namespace Controllers\Admin;
 
 use Components\Renderer;
+use Components\Redirect;
 
 class BaseController
 {
@@ -15,7 +16,7 @@ class BaseController
   function __construct($target = "index", $params = [])
   {
     if (!isset($_SESSION['logged']) || !isset($_SESSION['isAdmin'])) {
-      new AuthController();
+      Redirect::to("auth");
       return;
     }
     $this->renderer = new Renderer(get_class($this), true);
