@@ -12,4 +12,9 @@ class Rank extends BaseModel
   const REGISTERED  = 3;
   const VISITOR     = 4;
 
+  public function users()
+  {
+    return $this->hasMany('Models\User');
+  }
+
 }
