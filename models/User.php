@@ -2,13 +2,13 @@
 
 namespace Models;
 
-class Users extends BaseModel
+class User extends BaseModel
 {
   protected $table = 'users';
 
   public function rank()
   {
-    return $this->hasOne('Models\Ranks');
+    return $this->hasOne('Models\Rank');
   }
-  
+
 }

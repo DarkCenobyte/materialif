@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Ranks extends BaseModel
+class Rank extends BaseModel
 {
   protected $table = 'ranks';
   public $timestamps = false;

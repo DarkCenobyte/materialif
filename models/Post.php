@@ -2,18 +2,18 @@
 
 namespace Models;
 
-class Posts extends BaseModel
+class Post extends BaseModel
 {
   protected $table = 'posts';
 
   public function author()
   {
-    return $this->hasOne('Models\Authors');
+    return $this->hasOne('Models\Author');
   }
 
   public function thread()
   {
-    return $this->hasOne('Models\Threads');
+    return $this->hasOne('Models\Thread');
   }
-  
+
 }

@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Extensions extends BaseModel
+class Extension extends BaseModel
 {
   protected $table = 'extensions';
   public $timestamps = false;

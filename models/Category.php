@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Categories extends BaseModel
+class Category extends BaseModel
 {
   protected $table = 'categories';
   public $timestamps = false;
