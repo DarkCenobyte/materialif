@@ -14,7 +14,10 @@ class BaseController
 
   function __construct($target = "index", $params = [])
   {
-    //check session if admin, if not redirect to adminLogin page
+    if (!isset($_SESSION['logged']) || !isset($_SESSION['isAdmin'])) {
+      new AuthController();
+      return;
+    }
     $this->renderer = new Renderer(get_class($this), true);
     if (
       in_array(
@@ -29,7 +32,7 @@ class BaseController
     }
   }
 
-  public function errorNotFound()
+  private function errorNotFound()
   {
     $this->renderer->renderFromFile("../views/default/404.tpl");
   }

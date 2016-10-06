@@ -28,7 +28,7 @@ class BaseController
     }
   }
 
-  public function errorNotFound()
+  private function errorNotFound()
   {
     $this->renderer->renderFromFile("views/default/404.tpl");
   }
