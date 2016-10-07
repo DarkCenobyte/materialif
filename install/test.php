@@ -9,23 +9,16 @@ $res = [];
 if (isset($_POST['dbForm'])) {
   $dbForm = $_POST['dbForm'];
 
-  define("DRIVER", $dbForm['driver']);
-  define("HOST", $dbForm['server']);
-  define("DATABASE", $dbForm['db-name']);
-  define("USERNAME", $dbForm['db-user']);
-  define("PASSWORD", $dbForm['db-password']);
-  define("PREFIX", $dbForm['db-prefix']);
-
   $capsule = new Capsule;
   $capsule->addConnection([
-    'driver'    => DRIVER,
-    'host'      => HOST,
-    'database'  => DATABASE,
-    'username'  => USERNAME,
-    'password'  => PASSWORD,
+    'driver'    => $dbForm['driver'] ?? null,
+    'host'      => $dbForm['server'] ?? null,
+    'database'  => $dbForm['db-name'] ?? null,
+    'username'  => $dbForm['db-user'] ?? null,
+    'password'  => $dbForm['db-password'] ?? null,
     'charset'   => 'utf8',
     'collation' => 'utf8_general_ci',
-    'prefix'    => PREFIX
+    'prefix'    => $dbForm['db-prefix'] ?? null
   ]);
 
   $capsule->setAsGlobal();
@@ -34,11 +27,15 @@ if (isset($_POST['dbForm'])) {
     Capsule::connection()->getPdo();
   } catch (PDOException $e) {
     $res['status'] = false;
-    $res['error'] = $e->getMessage();
+    $res['error'] = utf8_encode(
+      $e->getMessage()
+    );
+    
     echo json_encode($res);
 
     return;
   }
+
   $manager = $capsule->getDatabaseManager();
   $manager->purge();
 

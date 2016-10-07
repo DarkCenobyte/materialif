@@ -112,6 +112,8 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   $post->thread_id = 1;
   $post->save();
 
+  // @TODO: Remove install folder
+
 }
 
 $renderer = new Renderer(null);

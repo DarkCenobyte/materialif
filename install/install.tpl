@@ -182,6 +182,14 @@
             type: "POST",
             data: {
               "dbForm": dbForm
+            },
+            success: function(res){
+              res = JSON.parse(res);
+              if (res.status) {
+                Materialize.toast('Database settings seems VALID!', 4000, 'rounded');
+              } else {
+                Materialize.toast('Database settings seems INVALID! Please recheck your settings', 4000, 'rounded');
+              }
             }
           });
         });
@@ -204,6 +212,9 @@
             data: {
               "dbForm": dbForm,
               "adminForm": adminForm
+            },
+            success: function(){
+              window.location.href = '../';
             }
           });
         });
