@@ -14,7 +14,7 @@ function smarty_modifier_url_rewriter($string)
     $urlParams = preg_split(
       '/\?c=|&t=|&p=/',
       $string,
-      3
+      4
     );
 
     return implode('/', $urlParams);
