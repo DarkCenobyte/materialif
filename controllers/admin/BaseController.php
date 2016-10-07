@@ -27,7 +27,7 @@ class BaseController
       !in_array(get_class($this), self::SAFE_ZONE)
     ) {
       $this->redirect->to("auth");
-      
+
       return;
     }
     $this->renderer = new Renderer(get_class($this), true);
@@ -38,7 +38,12 @@ class BaseController
       )
     ) {
       $this->params = $params;
-      $this->$target();
+      if (is_array($this->params)) {
+        call_user_func_array([$this, $target], $this->params);
+      } else {
+        call_user_func([$this, $target], $this->params);
+      }
+      //$this->$target();
     } else {
       $this->errorNotFound();
     }
