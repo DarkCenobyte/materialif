@@ -26,6 +26,7 @@ class Renderer
     $this->smarty->setCompileDir(__DIR__ . '/../caches/smarty/templates_c');
     $this->smarty->setCacheDir(__DIR__ . '/../caches/smarty/cache');
     $this->smarty->setConfigDir(__DIR__ . '/../caches/smarty/configs');
+    $this->smarty->addPluginsDir(__DIR__ . '/smarty');
   }
 
   /**

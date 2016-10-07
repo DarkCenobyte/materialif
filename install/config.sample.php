@@ -25,4 +25,8 @@ $capsule->bootEloquent();
 if (!defined("BASE_URL")) {
   define("BASE_URL", <*BASEURL*>);
 }
+if (!defined("URL_REWRITER_ACTIVATED")) {
+  //Set this constant to true to enable url rewriting
+  define("URL_REWRITER_ACTIVATED", false);
+}
 date_default_timezone_set('UTC');
