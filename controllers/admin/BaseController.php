@@ -23,7 +23,7 @@ class BaseController
   {
     $this->redirect = new Redirect("Controllers\Admin\\");
     if (
-      (!isset($_SESSION['logged']) || !isset($_SESSION['isAdmin'])) &&
+      !isset($_SESSION['isAdmin']) &&
       !in_array(get_class($this), self::SAFE_ZONE)
     ) {
       $this->redirect->to("auth");
