@@ -22,6 +22,9 @@
         <li><div class="userView">
           Welcome {$smarty.session.username}
         </div></li>
+        <li><a class="waves-effect" href="{'admin/index.php?c=index&t=index'|url_rewriter}"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li><a class="waves-effect" href="{'admin/index.php?c=auth&t=logout'|url_rewriter}"><i class="material-icons">power_settings_new</i>Logout</a></li>
+
         <li><div class="divider"></div></li>
         <li><a class="subheader">Users settings</a></li>
         <li><a class="waves-effect" href="{'admin/index.php?c=user&t=index'|url_rewriter}"><i class="material-icons">people</i>Manage Users</a></li>
@@ -32,9 +35,11 @@
         <li><a class="waves-effect" href="{'admin/index.php?c=category&t=index'|url_rewriter}"><i class="material-icons">collections_bookmark</i>Manage Categories</a></li>
         <li><a class="waves-effect" href="{'admin/index.php?c=template&t=index'|url_rewriter}"><i class="material-icons">insert_photo</i>Manage Templates</a></li>
         <li><a class="waves-effect" href="{'admin/index.php?c=generalSettings&t=index'|url_rewriter}"><i class="material-icons">settings</i>General Settings</a></li>
+
         <li><div class="divider"></div></li>
         <li><a class="subheader">Advanced settings</a></li>
         <li><a class="waves-effect" href="{'admin/index.php?c=advanced&t=index'|url_rewriter}"><i class="material-icons">settings</i>Caches Settings</a></li>
+
         <li><div class="divider"></div></li>
         <li><a class="subheader">Extensions settings</a></li>
         {* <li><a class="waves-effect" href="{'admin/index.php?c=extSample&t=index'|url_rewriter}"><i class="material-icons">extension</i>Example Ext Settings</a></li> *}
