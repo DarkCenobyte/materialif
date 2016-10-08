@@ -12,7 +12,7 @@ function smarty_modifier_url_rewriter($string)
 {
   if (URL_REWRITER_ACTIVATED) {
     $urlParams = preg_split(
-      '/\?c=|&t=|&p=/',
+      '/\/index\.php\?c=|\/\?c=|&t=|&p=/',
       $string,
       4
     );
