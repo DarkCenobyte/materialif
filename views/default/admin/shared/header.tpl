@@ -17,16 +17,23 @@
         <div class="col s12" id="header">Admin Page</div>
       </div>
       <div class="divider"></div>
-      <ul id="slide-out" class="side-nav">
+      {if isset($smarty.session.isAdmin) && $smarty.session.isAdmin}
+      <ul id="slide-out" class="side-nav fixed">
         <li><div class="userView">
-          {* <img class="background" src="images/office.jpg"> *}
-          <a href="#!name"><span class="white-text name">John Doe</span></a>
-          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          Welcome {$smarty.session.username}
         </div></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a class="subheader">Users settings</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">people</i>Manage Users</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">verified_user</i>Manage Ranks</a></li>
+
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Forum settings</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">collections_bookmark</i>Manage Categories</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">insert_photo</i>Manage Templates</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>General Settings</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Advanced settings</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Caches Settings</a></li>
       </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      {/if}

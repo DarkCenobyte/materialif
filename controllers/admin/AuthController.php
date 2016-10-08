@@ -36,6 +36,7 @@ class AuthController extends BaseController
     echo "connected";
     $_SESSION['userid'] = $id;
     $_SESSION['username'] = $username;
+    $_SESSION['isAdmin'] = true;
     $this->redirect->to("index");
     return;
   }
