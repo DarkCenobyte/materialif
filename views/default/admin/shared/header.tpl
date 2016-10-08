@@ -35,5 +35,8 @@
         <li><div class="divider"></div></li>
         <li><a class="subheader">Advanced settings</a></li>
         <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Caches Settings</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Extensions settings</a></li>
+        {* <li><a class="waves-effect" href="#!"><i class="material-icons">extension</i>Example Ext Settings</a></li> *}
       </ul>
       {/if}
