@@ -16,7 +16,7 @@
             {if !$rank->protected}
             <a class="btn" href="{'admin/index.php?c=rank&t=remove&p[id]='|cat:$rank->id|url_rewriter}"><i class="material-icons">delete</i></a>
             {/if}
-            <button class="btn modal-trigger" data-target="edit-rank" data-rankid="{$rank->id}" data-rankname="{$rank->name}"><i class="material-icons">edit</i></button>
+            <button class="btn modal-trigger edit-rank-button" data-target="edit-rank-modal" data-rankid="{$rank->id}" data-rankname="{$rank->name}"><i class="material-icons">edit</i></button>
           </td>
         </tr>
         {/foreach}
@@ -29,13 +29,37 @@
       </li>
       {/for}
     </ul>
-    <div id="edit-rank" class="modal bottom-sheet">
-      <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-      </div>
+    <div id="edit-rank-modal" class="modal bottom-sheet">
+      <form action="{'admin/index.php?c=rank&t=edit'|url_rewriter}" method="post">
+        <div class="modal-content">
+          <h4>Edit a Rank</h4>
+          <div class="row">
+           <div class="input-field col s6">
+             <input id="rank-edit-id" name="p[id]" type="hidden">
+             <input id="rank-edit-name" name="p[name]" type="text" class="validate" required>
+             <label for="rank-edit-name">Rank Name</label>
+           </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn modal-action modal-close waves-effect waves-light" type="submit" name="action">Save</button>
+        </div>
+      </form>
     </div>
-{include file="../shared/footer.tpl"}
+    <div id="add-rank-modal" class="modal bottom-sheet">
+      <form action="{'admin/index.php?c=rank&t=add'|url_rewriter}" method="post">
+        <div class="modal-content">
+          <h4>Add a Rank</h4>
+          <div class="row">
+           <div class="input-field col s6">
+             <input id="rank-add-name" name="p[name]" type="text" class="validate" required>
+             <label for="rank-add-name">Rank Name</label>
+           </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn modal-action modal-close waves-effect waves-light" type="submit" name="action">Add</button>
+        </div>
+      </form>
+    </div>
+{include file="../shared/footer.tpl" jsFile="rank.js"}

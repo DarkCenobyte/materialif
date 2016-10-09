@@ -1,6 +1,6 @@
 {include file="../shared/header.tpl"}
 <div class="col s12">
-  <form class="col s12" id="step-1-form" method="POST" action="admin/auth/auth">
+  <form class="col s12" id="step-1-form" method="post" action="{'admin/index.php?c=auth&t=auth'|url_rewriter}">
     <div class="row">
       <div class="input-field col s12 m6">
         <input name="p[admin-username]" type="text" class="validate" required>
