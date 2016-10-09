@@ -24,40 +24,29 @@ class RankController extends BaseController
 
   public function add($name)
   {
-    //get list
-    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
-    $pageCount = ceil(Rank::count() / 10);
+    $rank = new Rank();
+    $rank->name = $name;
+    $rank->save();
 
-    $this->renderer->render("index", [
-      "ranksList"   => $ranks,
-      "ranksPCount" => $pageCount,
-      "currentPage" => $page
-    ]);
+    $this->redirect->to("rank");
   }
 
   public function edit($id, $name)
   {
-    //get list
-    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
-    $pageCount = ceil(Rank::count() / 10);
+    $rank = Rank::find($id);
+    $rank->name = $name;
+    $rank->save();
 
-    $this->renderer->render("index", [
-      "ranksList"   => $ranks,
-      "ranksPCount" => $pageCount,
-      "currentPage" => $page
-    ]);
+    $this->redirect->to("rank");
   }
 
   public function remove($id)
   {
-    //get list
-    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
-    $pageCount = ceil(Rank::count() / 10);
+    $rank = Rank::find($id);
+    if ($rank->protected === false) {
+      $rank->delete();
+    }
 
-    $this->renderer->render("index", [
-      "ranksList"   => $ranks,
-      "ranksPCount" => $pageCount,
-      "currentPage" => $page
-    ]);
+    $this->redirect->to("rank");
   }
 }
