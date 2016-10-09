@@ -43,7 +43,7 @@ class RankController extends BaseController
   public function remove($id)
   {
     $rank = Rank::find($id);
-    if ($rank->protected === false) {
+    if ($rank->protected == false) {
       $rank->delete();
     }
 

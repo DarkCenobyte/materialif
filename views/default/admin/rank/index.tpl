@@ -29,6 +29,7 @@
       </li>
       {/for}
     </ul>
+    <button class="modal-trigger btn-floating btn-large waves-effect waves-light red right" data-target="add-rank-modal"><i class="material-icons">add</i></button>
     <div id="edit-rank-modal" class="modal bottom-sheet">
       <form action="{'admin/index.php?c=rank&t=edit'|url_rewriter}" method="post">
         <div class="modal-content">
