@@ -1,6 +1,9 @@
 <?php
 
-session_start();
+session_start([
+  'cookie_lifetime' => 86400,
+  'use_strict_mode' => true
+]);
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

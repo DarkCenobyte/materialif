@@ -31,6 +31,11 @@ class AuthController extends BaseController
     }
   }
 
+  public function logout()
+  {
+    session_destroy();
+  }
+
   private function login($id, $username)
   {
     echo "connected";
