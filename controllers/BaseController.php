@@ -14,7 +14,7 @@ class BaseController
   protected $redirect;
   protected $params;
 
-  function __construct($target = "index", $params = [])
+  function __construct($target = "index", $params = null)
   {
     $this->renderer = new Renderer(get_class($this));
     $this->redirect = new Redirect("Controllers\\");
@@ -28,9 +28,8 @@ class BaseController
       if (is_array($this->params)) {
         call_user_func_array([$this, $target], $this->params);
       } else {
-        call_user_func([$this, $target], $this->params);
+        call_user_func([$this, $target]);
       }
-      //$this->$target();
     } else {
       $this->errorNotFound();
     }
