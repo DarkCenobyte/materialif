@@ -21,4 +21,43 @@ class RankController extends BaseController
       "currentPage" => $page
     ]);
   }
+
+  public function add($name)
+  {
+    //get list
+    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
+    $pageCount = ceil(Rank::count() / 10);
+
+    $this->renderer->render("index", [
+      "ranksList"   => $ranks,
+      "ranksPCount" => $pageCount,
+      "currentPage" => $page
+    ]);
+  }
+
+  public function edit($id, $name)
+  {
+    //get list
+    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
+    $pageCount = ceil(Rank::count() / 10);
+
+    $this->renderer->render("index", [
+      "ranksList"   => $ranks,
+      "ranksPCount" => $pageCount,
+      "currentPage" => $page
+    ]);
+  }
+
+  public function remove($id)
+  {
+    //get list
+    $ranks = Rank::skip(($page - 1) * 10)->take(10)->get();
+    $pageCount = ceil(Rank::count() / 10);
+
+    $this->renderer->render("index", [
+      "ranksList"   => $ranks,
+      "ranksPCount" => $pageCount,
+      "currentPage" => $page
+    ]);
+  }
 }

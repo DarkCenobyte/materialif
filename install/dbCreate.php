@@ -26,6 +26,7 @@ Capsule::schema()->create('ranks', function (Blueprint $table) {
     $table->engine = 'InnoDB';
     $table->increments('id');
     $table->string('name')->unique();
+    $table->boolean('protected')->default(0);
 });
 
 //Create categories table
@@ -34,6 +35,8 @@ Capsule::schema()->create('categories', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
     $table->text('description')->nullable();
+    $table->integer('parent_id')->unsigned()->nullable();
+    $table->foreign('parent_id')->references('id')->on('categories');
 });
 
 //Create threads status table

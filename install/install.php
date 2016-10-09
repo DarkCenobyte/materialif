@@ -39,6 +39,7 @@ if (isset($_POST['dbForm']) && isset($_POST['adminForm'])) {
   foreach ($ranksArray as $value) {
     $rank = new Rank();
     $rank->name = $value;
+    $rank->protected = true;
     $rank->save();
   }
 
