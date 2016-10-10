@@ -14,7 +14,7 @@
       <td>{$category->name}</td>
       <td>
         <a class="btn" href="{'admin/index.php?c=category&t=remove&p[id]='|cat:$category->id|url_rewriter}"><i class="material-icons">delete</i></a>
-        <button class="btn modal-trigger edit-category-button" data-target="edit-category-modal" data-categoryid="{$category->id}" data-categoryname="{$category->name}" data-categorydesc="{$category->description}" data-categoryparent="{$category->parent}"><i class="material-icons">edit</i></button>
+        <button class="btn modal-trigger edit-category-button" data-target="edit-category-modal" data-categoryid="{$category->id}" data-categoryname="{$category->name}" data-categorydesc="{$category->description}" data-categoryparent="{$category->parent_id}"><i class="material-icons">edit</i></button>
       </td>
     </tr>
     {/foreach}
@@ -81,8 +81,8 @@
       </div>
       <div class="row">
        <div class="input-field col s6">
-         <input id="category-edit-desc" name="p[description]" type="text" class="validate">
-         <label for="category-edit-desc">Category Description</label>
+         <input id="category-add-desc" name="p[description]" type="text" class="validate">
+         <label for="category-add-desc">Category Description</label>
        </div>
       </div>
     </div>

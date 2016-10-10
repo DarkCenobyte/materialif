@@ -24,23 +24,23 @@ class CategoryController extends BaseController
     ]);
   }
 
-  public function add($name, $description = null, $parent = null)
+  public function add($name, $parent = null, $description = null)
   {
     $category = new Category();
     $category->name = $name;
     $category->description = $description;
-    $category->parent = $parent;
+    $category->parent_id = $parent;
     $category->save();
 
     $this->redirect->to("category");
   }
 
-  public function edit($id, $name = null, $description = null, $parent = null)
+  public function edit($id, $name = null, $parent = null, $description = null)
   {
     $category = Category::find($id);
     $category->name = $name;
     $category->description = $description;
-    $category->parent = $parent;
+    $category->parent_id = ($id != $parent) ? $parent : null;
     $category->save();
 
     $this->redirect->to("category");
