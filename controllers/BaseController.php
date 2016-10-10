@@ -26,6 +26,11 @@ class BaseController
     ) {
       $this->params = $params;
       if (is_array($this->params)) {
+        foreach ($this->params as &$value) {
+          if (empty($value)) {
+            $value = null;
+          }
+        }
         call_user_func_array([$this, $target], $this->params);
       } else {
         call_user_func([$this, $target]);

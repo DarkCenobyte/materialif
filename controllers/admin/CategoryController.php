@@ -13,12 +13,14 @@ class CategoryController extends BaseController
   {
     //get list
     $categories = Category::skip(($page - 1) * 10)->take(10)->get();
+    $allCategories = Category::all();
     $pageCount = ceil(Category::count() / 10);
 
     $this->renderer->render("index", [
       "categoriesList"   => $categories,
       "categoriesPCount" => $pageCount,
-      "currentPage" => $page
+      "currentPage"      => $page,
+      "allCategories"    => $allCategories
     ]);
   }
 
