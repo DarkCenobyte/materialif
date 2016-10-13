@@ -37,24 +37,45 @@
              <input id="user-edit-id" name="p[id]" type="hidden">
              <input id="user-edit-name" name="p[username]" type="text" class="validate" required>
              <label for="user-edit-name">User Name</label>
+           </div>
+           <div class="input-field col s6">
              <input id="user-edit-email" name="p[email]" type="email" class="validate" required>
              <label for="user-edit-email">User E-mail</label>
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
              <input id="user-edit-password" name="p[password]" type="password" class="validate">
              <label for="user-edit-password">Password</label>
+           </div>
+           <div class="input-field col s6">
              <select id="user-edit-rank" name="p[rank]">
              {foreach from=$ranksList item=rank}
               <option value="{$rank->id}">{$rank->name}</option>
              {/foreach}
              </select>
              <label for="user-edit-rank">Rank</label>
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
              <input id="user-edit-avatar" name="p[avatar]" type="text" class="validate"> {* TODO *}
              <label for="user-edit-avatar">Avatar URL</label>
-
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
              <input id="user-edit-firstname" name="p[firstname]" type="text" class="validate">
              <label for="user-edit-firstname">First Name</label>
+           </div>
+           <div class="input-field col s6">
              <input id="user-edit-lastname" name="p[lastname]" type="text" class="validate">
              <label for="user-edit-lastname">Last Name</label>
-             <input id="user-edit-birthdate" name="p[birthdate]" type="date" class="validate">
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
+             <input id="user-edit-birthdate" name="p[birthdate]" type="date">
              <label for="user-edit-birthdate">Birthdate</label>
            </div>
           </div>
@@ -72,31 +93,52 @@
            <div class="input-field col s6">
              <input id="user-add-name" name="p[username]" type="text" class="validate" required>
              <label for="user-add-name">User Name</label>
+           </div>
+           <div class="input-field col s6">
              <input id="user-add-email" name="p[email]" type="email" class="validate" required>
              <label for="user-add-email">User E-mail</label>
-             <input id="user-add-password" name="p[password]" type="password" class="validate">
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
+             <input id="user-add-password" name="p[password]" type="password" class="validate" required>
              <label for="user-add-password">Password</label>
+           </div>
+           <div class="input-field col s6">
              <select id="user-add-rank" name="p[rank]">
              {foreach from=$ranksList item=rank}
               <option value="{$rank->id}">{$rank->name}</option>
              {/foreach}
              </select>
              <label for="user-add-rank">Rank</label>
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
              <input id="user-add-avatar" name="p[avatar]" type="text" class="validate"> {* TODO *}
              <label for="user-add-avatar">Avatar URL</label>
-
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
              <input id="user-add-firstname" name="p[firstname]" type="text" class="validate">
              <label for="user-add-firstname">First Name</label>
+           </div>
+           <div class="input-field col s6">
              <input id="user-add-lastname" name="p[lastname]" type="text" class="validate">
              <label for="user-add-lastname">Last Name</label>
-             <input id="user-add-birthdate" name="p[birthdate]" type="date" class="validate">
+           </div>
+         </div>
+         <div class="row">
+           <div class="input-field col s6">
+             <input id="user-add-birthdate" name="p[birthdate]" type="date">
              <label for="user-add-birthdate">Birthdate</label>
            </div>
-          </div>
+         </div>
         </div>
         <div class="modal-footer">
           <button class="btn modal-action modal-close waves-effect waves-light" type="submit" name="action">Add</button>
         </div>
       </form>
     </div>
-{include file="../shared/footer.tpl"}
+{include file="../shared/footer.tpl" jsFile="user.js"}
