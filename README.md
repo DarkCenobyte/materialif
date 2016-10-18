@@ -1,10 +1,9 @@
-# elysium-forum
-Elysium-forum is a new forum project, using latest technologies as PHP7, Eloquent (from Laravel), and Smarty 3.
+# MaterialIF (Material Internet Forum)
+MaterialIF (code-name Elysium-forum) is a new forum project, using latest technologies as PHP7, Eloquent (from Laravel), and Smarty 3.
 
 ----------
 
 ##Why another forum?
-
 
 Well, if you look at others forum, theres is many that aren't free, and there is phpBB and its clone (punBB, ...), I wanted to do something different, and also more modern... I also wanted to be more free that can be phpBB, by refusing use a framework like Symphony or Laravel, but doing the rendering, the controller loading, securities, ... from scratch using what PHP give us and do fast.
 
