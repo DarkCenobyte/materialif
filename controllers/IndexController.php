@@ -6,7 +6,6 @@ namespace Controllers;
  *
  */
 use Models\Category;
-use Models\Thread;
 
 class IndexController extends BaseController
 {
